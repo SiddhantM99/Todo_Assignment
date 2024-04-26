@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GroupList from './GroupList';
-import './App.css'; // Import CSS file
+import './App.css'; 
 
 const App = () => {
   const [groups, setGroups] = useState([{ from: 1, to: 10 }]);
   const [statuses, setStatuses] = useState([]);
-  const [showStatuses, setShowStatuses] = useState(false); // State to control visibility of statuses
-  const [showGroups, setShowGroups] = useState(false); // State to control visibility of groups
+  const [showStatuses, setShowStatuses] = useState(false); 
+  const [showGroups, setShowGroups] = useState(false); 
 
   const addGroup = () => {
-    // Prompt the user to enter 'from' value for the new group
+   
     let fromInput = prompt("Enter 'from' value for the new group:");
     
-    // Check if user cancels the prompt
+    
     if (fromInput === null) {
-      return; // Exit the function
+      return; 
     }
   
     let from = parseInt(fromInput);
@@ -24,12 +24,11 @@ const App = () => {
       return;
     }
   
-    // Prompt the user to enter 'to' value for the new group
     let toInput = prompt("Enter 'to' value for the new group:");
     
-    // Check if user cancels the prompt
+   
     if (toInput === null) {
-      return; // Exit the function
+      return; 
     }
   
     let to = parseInt(toInput);
@@ -38,7 +37,6 @@ const App = () => {
       return;
     }
   
-    // Rule 1: The entire range of 1-10 should be covered and no group can go outside the range
     const existingNumbers = new Set();
     groups.forEach(group => {
       for (let i = group.from; i <= group.to; i++) {
@@ -53,7 +51,7 @@ const App = () => {
       }
     }
   
-    // Rule 2: There should not be any gaps between consecutive groups
+   
     const sortedGroups = [...groups, { from, to }].sort((a, b) => a.from - b.from);
     for (let i = 0; i < sortedGroups.length - 1; i++) {
       if (sortedGroups[i].to !== sortedGroups[i + 1].from - 1) {
@@ -62,7 +60,7 @@ const App = () => {
       }
     }
   
-    // Rule 3: There should not be overlap between consecutive groups
+   
     for (let i = 0; i < sortedGroups.length - 1; i++) {
       if (sortedGroups[i].to >= sortedGroups[i + 1].from) {
         alert('There should not be overlap between consecutive groups');
@@ -92,8 +90,8 @@ const App = () => {
       groupStatuses.push(statuses);
     }
     setStatuses(groupStatuses);
-    setShowStatuses(true); // Set showStatuses to true after fetching statuses
-    setShowGroups(true); // Set showGroups to true after fetching statuses
+    setShowStatuses(true); 
+    setShowGroups(true); 
   };
 
   const fetchTodoStatus = async (id) => {

@@ -1,4 +1,4 @@
-// Group.js
+
 import React from 'react';
 
 const Group = ({ group, index, status, deleteGroup }) => {
